@@ -40,6 +40,7 @@ mongoose
 
 // LOGIN ROUTE
 app.post('/api/login', (req, res) => {
+  console.log("I've been hit")
   auth
     .logUserIn(req.body.email, req.body.password)
     .then(dbUser => res.json(dbUser))
