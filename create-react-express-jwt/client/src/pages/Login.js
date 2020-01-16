@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
+import HustleBar from '../components/Hustlebar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,13 +26,13 @@ function Login() {
 
   return (
     <div className="container">
-      <h1>Login</h1>
+      <img className="logo" src="/BBB_logo.png" alt=""/>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email"></label>
           <input
             className="form-control"
-            placeholder="Email goes here..."
+            placeholder="Email"
             name="email"
             type="email"
             id="email"
@@ -40,10 +41,10 @@ function Login() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="pwd"></label>
           <input
             className="form-control"
-            placeholder="Password goes here..."
+            placeholder="Password"
             name="password"
             type="password"
             id="pwd"
@@ -51,13 +52,15 @@ function Login() {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <p className="paragraph">Forgot your password? <a href="#">Click Here</a></p>
+        <hr/>
+        <button type="submit" className="btn btn-warning">
+          Login
+        </button>
+        <button type="submit" className="btn btn-secondary">
+          Signup
         </button>
       </form>
-      <p>
-        <Link to="/signup">Go to Signup</Link>
-      </p>
     </div>
   );
 }

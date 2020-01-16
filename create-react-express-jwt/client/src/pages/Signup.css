@@ -1,0 +1,33 @@
+.header {
+    margin-top: 30px;
+    text-align: center;
+    font-family: Shumi;
+}
+
+p {
+    font-family: San Francisco Display;
+}
+
+.btn {
+    display: block;
+    width: 70%;
+    padding: 10px;
+    margin: 30px auto;
+    color: white;
+    font-weight: bold;
+}
+
+.login {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+    width: 250px;
+}
+
+.paragraph {
+    text-align: center;
+}

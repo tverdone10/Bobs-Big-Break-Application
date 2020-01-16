@@ -42,7 +42,7 @@ ReactDOM.render(
   <AuthProvider>
     <Router>
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <ProtectedRoute exact path="/">
             <App />
