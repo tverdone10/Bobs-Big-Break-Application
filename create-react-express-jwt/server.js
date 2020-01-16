@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 // Setting up express to use json and set it to req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+ 
 const dbOptions = {
   useNewUrlParser: true,
   useFindAndModify: false,

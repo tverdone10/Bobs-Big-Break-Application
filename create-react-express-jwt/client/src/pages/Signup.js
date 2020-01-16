@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import API from './../utils/API';
 import {useAuth} from '../utils/auth'
+import './Signup.css'
 
 
 function Signup() {
@@ -40,13 +41,14 @@ function Signup() {
 
   return (
     <div className="container">
-      <h1>Signup</h1>
+      <h1 className='header'>Signup</h1>
+      <hr/>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username"></label>
           <input
             className="form-control"
-            placeholder="Username goes here..."
+            placeholder="Username"
             name="username"
             type="text"
             id="username"
@@ -54,10 +56,10 @@ function Signup() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email"></label>
           <input
             className="form-control"
-            placeholder="Email goes here..."
+            placeholder="Email"
             name="email"
             type="email"
             id="email"
@@ -65,21 +67,21 @@ function Signup() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="pwd"></label>
           <input
             className="form-control"
-            placeholder="Password goes here..."
+            placeholder="Password"
             name="password"
             type="password"
             id="pwd"
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-warning">
           Submit
         </button>
       </form>
-      <p>
+      <p className='login'>
         <Link to="/login">Go to Login</Link>
       </p>
     </div>
