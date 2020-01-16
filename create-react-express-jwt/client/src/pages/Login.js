@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 import HustleBar from '../components/Hustlebar';
+import HustleButton from '../components/HustleButton/HustleButton'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,6 +27,13 @@ function Login() {
 
   return (
     <div className="container">
+      <div>
+        {/* Using this area to test components */}
+      {/* <div className="box" style={{backgroundColor: "#999999"}}> */}
+      {/* <HustleButton /> */}
+
+      </div>
+
       <img className="logo" src="/BBB_logo.png" alt=""/>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
@@ -59,7 +67,7 @@ function Login() {
         </button>
       </form>
       <button className="btn btn-secondary">
-    <Link to="/signup">Go to Signup</Link>
+    <Link to="/signup" style={{color: "white"}}>Go to Signup</Link>
     </button>
     </div>
   );

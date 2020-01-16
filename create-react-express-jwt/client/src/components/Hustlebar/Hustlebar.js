@@ -4,8 +4,8 @@ import './style.css';
 
 function HustleBar() {
     return (
-        <div className="box">
-            <section className="hero is-primary">
+        <div>
+            <section className="hero is-primary" style={{backgroundColor: "#DA1C4B"}}>
   <div className="hero-body">
     <div className="container">
       <h1 className="title">
