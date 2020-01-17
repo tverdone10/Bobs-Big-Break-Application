@@ -7,6 +7,7 @@ import HustleBar from '../components/HustleBar/HustleBar';
 import LevelupButton from '../components/LevelupButton/LevelupButton';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import HustleLevel from '../components/HustleLevel/HustleLevel';
+import UnlockHustle from '../components/UnlockHustle/UnlockHustle';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -31,10 +32,17 @@ function Login() {
 
   return (
     <div className="container">
+      <UnlockHustle />
+      <div style={{ backgroundColor: "#999", borderTopLeftRadius: "5px", borderTopRightRadius: "5px", width: "150px", marginTop: "100px"}}>
+      <img src="./BBB_logo.png" style={{display: "block", textAlign:"left", width: "150px"}} alt=""/>
 
-      <div className="box" style={{ position: "relative"}}>
-      <b style={{ fontFamily: "Shumi", fontSize: '2em'}}>Spare Change</b>
-      <b style={{ float: 'right', fontWeight: 'bold'}}>x1</b>
+      </div>
+      <div className="box" style={{ position: "relative", paddingTop: "10px"}}>
+        
+      <b style={{display:"block", fontWeight: 'bold', textAlign: "right", top: "0"}}>x1</b>
+      <b style={{ display: "block", fontFamily: "Shumi", fontSize: '2em', textAlign: "left"}}>Spare Change</b>
+
+        
       <HustleLevel />
       <ProgressBar />
       <LevelupButton />
