@@ -3,7 +3,7 @@ import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 
 // Testing components for homepage
-import HustleBar from '../components/HustleBar/HustleBar';
+import HustleBar from '../components/Hustlebar/HustleBar';
 import LevelupButton from '../components/LevelupButton/LevelupButton';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import HustleLevel from '../components/HustleLevel/HustleLevel';
