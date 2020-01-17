@@ -4,10 +4,10 @@ import './style.css'
 const UnlockHustle = () => {
   return (
     <section
-      class="hero is-medium is-danger is-bold"
+      className="hero is-medium is-danger is-bold"
     >
-      <div class="hero-body">
-        <div class="container">
+      <div className="hero-body">
+        <div className="container">
           <div className="container">
             <h1 className="unlock-header">
               Next Hustle
@@ -17,11 +17,11 @@ const UnlockHustle = () => {
             </b>
             <br />
             <button
-              class="button is-large unlock"
+              className="button is-large unlock"
               style={{display: 'block', margin: '0 auto', textAlign: 'center', backgroundColor: "#FEBE40", borderBottom: "#D39C3C solid 5px"}}
             >
-              <span class="icon is-medium">
-                <i class="fas fa-lock"></i>
+              <span className="icon is-medium">
+                <i className="fas fa-lock"></i>
               </span>
               <span>Unlock</span>
               <br />

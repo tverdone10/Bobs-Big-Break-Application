@@ -11,13 +11,7 @@ import axios from 'axios';
 import './index.css';
 import App from './App';
 import {AuthProvider, useAuth} from './utils/auth'
-import { ProviderClick, 
-        reducerClick, 
-        initialState,
-        // ProviderAuto,
-        // autoInc,
-        // autoState
-      } from "./useGlobalState"
+
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -25,7 +19,6 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-import Navbar from './components/Navbar';
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem('id_token')) {
@@ -35,11 +28,6 @@ if (localStorage.getItem('id_token')) {
     'Authorization'
   ] = `Bearer ${localStorage.getItem('id_token')}`;
 }
-
-
-// Here is going to be our reducer for out COUNT global state
-
-
 
 function ProtectedRoute({ children, ...rest }) {
   const { isLoggedIn } = useAuth();
@@ -54,8 +42,6 @@ ReactDOM.render(
     <Router>
       <div>
         {/* <Navbar /> */}
-        <ProviderClick reducer = {reducerClick} initialState={initialState}>
-        
         <Switch>
           <ProtectedRoute exact path="/">
             <App />
@@ -70,7 +56,6 @@ ReactDOM.render(
             <Profile />
           </ProtectedRoute>
         </Switch>
-        </ProviderClick>
       </div>
     </Router>
   </AuthProvider>,
