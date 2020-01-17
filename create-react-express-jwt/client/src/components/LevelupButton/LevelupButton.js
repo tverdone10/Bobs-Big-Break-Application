@@ -3,7 +3,7 @@ import './style.css';
 
 const HustleButton = () => {
   return (
-    <div>
+    <div style={{textAlign: "right", width: '100%'}}>
       <button class="button is-large">
         <span class="icon is-medium">
           <i class="fas fa-arrow-alt-circle-up"></i>
@@ -17,6 +17,7 @@ const HustleButton = () => {
             fontSize: '12px',
             padding: '3px',
             fontWeight: 'bold',
+            color: '#666666'
           }}
         >
           $500
