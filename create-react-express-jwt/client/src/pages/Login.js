@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
-import HustleBar from '../components/Hustlebar';
-import HustleButton from '../components/HustleButton/HustleButton'
+
+// Testing components for homepage
+import HustleBar from '../components/HustleBar/HustleBar';
+import LevelupButton from '../components/LevelupButton/LevelupButton';
+import ProgressBar from '../components/ProgressBar/ProgressBar';
+import HustleLevel from '../components/HustleLevel/HustleLevel';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,11 +31,13 @@ function Login() {
 
   return (
     <div className="container">
-      <div>
-        {/* Using this area to test components */}
-      {/* <div className="box" style={{backgroundColor: "#999999"}}> */}
-      {/* <HustleButton /> */}
 
+      <div className="box" style={{ position: "relative"}}>
+      <b style={{ fontFamily: "Shumi", fontSize: '2em'}}>Spare Change</b>
+      <b style={{ float: 'right', fontWeight: 'bold'}}>x1</b>
+      <HustleLevel />
+      <ProgressBar />
+      <LevelupButton />
       </div>
 
       <img className="logo" src="/BBB_logo.png" alt=""/>

@@ -1,7 +1,7 @@
-.button {
+.button { 
     background-color: #DA1C4B;
     border: none;
-    border-bottom: rgb(160, 17, 53) solid 4px;
+    border-bottom: rgb(160, 17, 53) solid 5px;
     color: white;
     width: 200px;
 }

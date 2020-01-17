@@ -1,3 +1,3 @@
-import HustleBar from "./Hustlebar";
+import HustleBar from "./HustleBar";
 
 export default HustleBar;

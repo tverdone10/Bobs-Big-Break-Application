@@ -1,0 +1,18 @@
+.row {
+    position: relative;
+}
+
+#hustlelevel {
+    width: 80px;
+    position: absolute;
+    left: 15px;
+    top: 35px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #FEBE40;
+    color: #666666;
+    text-align: center;
+    font-weight: bold;
+    font-size: .75 em;
+    border-bottom: #D59D30 solid 4px;
+}
