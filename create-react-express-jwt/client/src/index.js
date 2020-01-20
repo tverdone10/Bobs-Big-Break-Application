@@ -17,8 +17,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 // Our Components
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+import Home from './pages/Home';
 import Signup from './pages/Signup';
+import Inventory from './pages/Inventory'
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem('id_token')) {
@@ -53,7 +54,10 @@ ReactDOM.render(
             <Signup />
           </Route>
           <ProtectedRoute exact path="/profile">
-            <Profile />
+           <Home />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/inventory">
+           <Inventory />
           </ProtectedRoute>
         </Switch>
       </div>
