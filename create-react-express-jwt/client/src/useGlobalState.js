@@ -1,69 +1,129 @@
 import React, { useReducer, createContext, useContext } from "react";
-import { INCREMENT_COINS, 
-          INCREMENT_PASSIVE_COINS} 
-          from "./actions"
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER,
+  BUY_SKIN
+} from "./actions";
+
+import { HUSTLERS, HUSTLES } from "./hustlerConfig";
 
 // IMPORTANT this is our state that will be used everywhere.
 // idea is that we will increment coins and passiveCoins separately
 // behind the scenes and add them together to have our totalCoins
 
-let globalState = {
-  coins: 0,
-  passiveCoins: 0,
-  totalCoins: 0
-}
+let initState = {
+  disposableCoins: 0,
+  everCoins: 0,
+  passiveInterval: null,
+  hustles: {
+    coinJar: true
+  },
+  hustlers: {
+    // When a hustler becomes true he'll automatically be in here
+  }
+  // owned skins: {
+  //   pants,
+  //   shirts,
+  // }
+
+  /// equipped skins
+};
 
 // IMPORTANT -- this variable creates context using our globalState above
 
-const GlobalContext = createContext(null)
+const GlobalContext = createContext(null);
+
+// IMPORTANT -- This is our passive income custom hook
+
+export const usePassiveClick = () => {};
 
 // IMPORTANT -- this reducer is going to respond to our dispatches
-// (actions) and do something with them. i.e. if I click a button 
-// which dispatches an "INCREMENT_COINS" request, it will return 
+// (actions) and do something with them. i.e. if I click a button
+// which dispatches an "INCREMENT_COINS" request, it will return
 // what is written below that case
 
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case INCREMENT_COINS:
-      return [
+// custom hook usePassiveCounter
 
-        ...state,{
-        coins: state.coins + 1,
-        totalCoins: state.coins + state.passiveCoins
+export const reducer = (state, action) => {
+  // WHENEVER SOMETHING HAPPENS, SET IT UP TO POST TO THE DB 
+  // WHENEVER YOU START THE APP, GET FROM MONGOOSE
+  switch (action.type) {
+    case USE_HUSTLE:
+      return {
+        ...state,
+        disposableCoins: state.disposableCoins + HUSTLES[action.hustle].rate
+      };
+    case USE_PASSIVE_HUSTLE:
+      let newDisposableCoins = 0;
+
+      for (let hustlerType of Object.keys(HUSTLERS)) {
+        if (state.hustlers[hustlerType]) {
+          newDisposableCoins += HUSTLERS[hustlerType].rate;
         }
-  ]
-      
-      case INCREMENT_PASSIVE_COINS:
-        return [
-          ...state,{
-          passiveCoins: state.passiveCoins + 1,
-          totalCoins: state.coins + state.passiveCoins
-          }
-        ]
+      }
+
+      return {
+        ...state,
+        disposableCoins: state.disposableCoins + newDisposableCoins
+      };
+
+    case INITIALIZE_PASSIVE_INTERVAL:
+      return {
+        ...state,
+        passiveInterval: action.passiveInterval
+      };
+
+    case BUY_HUSTLE:
+      return {
+        ...state,
+        disposableCoins: state.disposableCoins - HUSTLES[action.hustle].cost,
+        hustles: {
+          ...state.hustles,
+          [action.hustle]: true
+        }
+      };
+
+    case BUY_HUSTLER:
+      return {
+        ...state,
+        disposableCoins: state.disposableCoins - HUSTLES[action.hustler].cost,
+        hustlers: {
+          ...state.hustlers,
+          [action.hustler]: true
+        }
+      };
+
     default:
-      throw new Error(`${action.type} is not a valid action.`)
+      throw new Error(`${action.type} is not a valid action.`);
   }
-}
+};
 
 // IMPORTANT -- This is our provider. Basically, whatever is wrapped
-// in here has the context that we've given it. 
+// in here has the context that we've given it.
 
-export const GlobalProvider = ({children}) => {
+export const GlobalProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initState);
   return (
-  <GlobalContext.Provider value = {useReducer(reducer, {...globalState, totalCoins})}>
-    {children}
+    <GlobalContext.Provider
+      value={{
+        state,
+        dispatch
+      }}
+    >
+      {children}
     </GlobalContext.Provider>
-  )
-}
+  );
+};
 
-export function useGlobalState(){
-    return useContext(GlobalContext)
- 
+export function useGlobalState() {
+  return useContext(GlobalContext);
 }
 
 // ----------------------------------------
 // old stuff
-
 
 // const ClickContext = createContext(null);
 // const AutoIncContext= createContext(null)
