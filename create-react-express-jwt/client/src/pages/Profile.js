@@ -3,14 +3,17 @@ import API from './../utils/API';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 import { useGlobalState } from "../useGlobalState" 
-
+import { INCREMENT_COINS, 
+        INCREMENT_PASSIVE_COINS} 
+        from "../actions"
 
 function Profile() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const { user } = useAuth();
-  const [clickUp, dispatch] = useGlobalState();
-  // const [autoUp, dispatch] = useGlobalSTate()
+  // const [clickUp, dispatch] = useClickState();
+  // const [autoUp, attack] = useAutoState()
+  const [countUp, dispatch] = useGlobalState()
 
   useEffect(() => {
     API.getUser(user.id).then(res => {
@@ -19,15 +22,21 @@ function Profile() {
     });
   }, [user]);
 
+
+
   return (
     <div className="container Profile">
       <h1>On the profile page!</h1>
-      <h2>Currency: {clickUp}</h2>
-      <button onClick={() => dispatch({type: "INCREMENT"})}>Increase</button>
+      <h2>Currency: {countUp.coins}</h2>
+      <button onClick={() => dispatch({type: INCREMENT_COINS})}>Increase</button>
      <br></br>
      <br></br>
-      <h2>Test Currency: {clickUp}</h2>
-      <button onClick={() => dispatch({type: "INCREMENT2"})}>Increase</button>
+      <h2>Test Currency: {countUp.passiveCoins}</h2>
+      <button onClick={() => dispatch({type: INCREMENT_PASSIVE_COINS})}>Increase</button>
+      <br></br>
+     <br></br>
+      {/* <h2>Master Currency: {countUp.totalCoins}</h2> */}
+      
       <p>Username: {username}Bob</p>
       <Link to="/">Go home</Link>
     </div>

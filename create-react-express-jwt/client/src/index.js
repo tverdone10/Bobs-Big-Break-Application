@@ -11,13 +11,20 @@ import axios from 'axios';
 import './index.css';
 import App from './App';
 import {AuthProvider, useAuth} from './utils/auth'
-import { ProviderClick, 
-        reducerClick, 
-        initialState,
-        // ProviderAuto,
-        // autoInc,
-        // autoState
-      } from "./useGlobalState"
+// import { ProviderClick, 
+//         reducerClick, 
+//         initialState,
+//         ProviderAuto,
+//         autoInc,
+//         autoState,
+//         useClickState,
+//         useAutoState
+//       } from "./useGlobalState"
+
+
+// IMPORTANT -- here we import our GlobalProvider wrapper
+import { GlobalProvider, reducer } from "./useGlobalState"
+
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -37,8 +44,6 @@ if (localStorage.getItem('id_token')) {
 }
 
 
-// Here is going to be our reducer for out COUNT global state
-
 
 
 function ProtectedRoute({ children, ...rest }) {
@@ -49,13 +54,16 @@ function ProtectedRoute({ children, ...rest }) {
   return <Redirect to="/signup" />;
 }
 
+
+
 ReactDOM.render(
   <AuthProvider>
     <Router>
       <div>
         {/* <Navbar /> */}
-        <ProviderClick reducer = {reducerClick} initialState={initialState}>
-        
+        <GlobalProvider reducer = {reducer} globalState = {globalState}>
+         {/* <ProviderClick reducer = {reducerClick} initialState={initialState}>
+          <ProviderAuto reducer = {autoInc} autoState = {autoState}> */}
         <Switch>
           <ProtectedRoute exact path="/">
             <App />
@@ -67,10 +75,12 @@ ReactDOM.render(
             <Signup />
           </Route>
           <ProtectedRoute exact path="/profile">
-            <Profile />
+            <Profile/>
           </ProtectedRoute>
         </Switch>
-        </ProviderClick>
+        {/* </ProviderAuto>
+        </ProviderClick> */}
+        </GlobalProvider>
       </div>
     </Router>
   </AuthProvider>,
