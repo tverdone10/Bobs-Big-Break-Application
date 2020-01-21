@@ -29,6 +29,12 @@ function Profile() {
     });
   }, [user]);
 
+  useEffect(() =>{
+
+    setTimeout(dispatch({type: USE_PASSIVE_HUSTLE, hustler: "coinHustler"}),1000)
+
+  },[])
+
   return (
     <div className="container Profile">
       <h1>On the profile page!</h1>
@@ -37,13 +43,19 @@ function Profile() {
       <br></br>
       <br></br>
       <h2>Test Currency: {state.passiveCoins}</h2>
-      {/* <button onClick={() => dispatch({ type: INCREMENT_PASSIVE_COINS })}>
-        Increase
-      </button> */}
+      <button onClick={() => dispatch({ type: USE_PASSIVE_HUSTLE, hustlerType: "coinHustler" })}>
+        USEPASSIVEHUSTLE BUTTON
+      </button>
+      <h2>buy coinJar hustler</h2>
+      <button onClick={() => dispatch({ type: BUY_HUSTLER, hustler: "coinHustler" })}>buy</button>
       <br></br>
       <br></br>
       <h2>Master Currency: {state.disposableCoins}</h2>
-
+      <br>
+      </br>
+      <br></br>
+      <br></br>
+      <button className="myBtn">disabled test</button>
       <p>Username: {username}Bob</p>
       <Link to="/">Go home</Link>
     </div>

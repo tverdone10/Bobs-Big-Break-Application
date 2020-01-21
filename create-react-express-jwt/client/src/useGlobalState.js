@@ -11,15 +11,16 @@ import {
 import { HUSTLERS, HUSTLES } from "./hustlerConfig";
 
 // IMPORTANT this is our state that will be used everywhere.
-// idea is that we will increment coins and passiveCoins separately
-// behind the scenes and add them together to have our totalCoins
 
 let initState = {
   disposableCoins: 0,
   everCoins: 0,
   passiveInterval: null,
   hustles: {
-    coinJar: true
+    coinJar: {
+      cost: 0,
+      rate: 0
+    }
   },
   hustlers: {
     // When a hustler becomes true he'll automatically be in here
@@ -40,6 +41,7 @@ const GlobalContext = createContext(null);
 
 export const usePassiveClick = () => {};
 
+//
 // IMPORTANT -- this reducer is going to respond to our dispatches
 // (actions) and do something with them. i.e. if I click a button
 // which dispatches an "INCREMENT_COINS" request, it will return
@@ -47,8 +49,10 @@ export const usePassiveClick = () => {};
 
 // custom hook usePassiveCounter
 
+//setinterval( ,1000)
+
 export const reducer = (state, action) => {
-  // WHENEVER SOMETHING HAPPENS, SET IT UP TO POST TO THE DB 
+  // WHENEVER SOMETHING HAPPENS, SET IT UP TO POST TO THE DB
   // WHENEVER YOU START THE APP, GET FROM MONGOOSE
   switch (action.type) {
     case USE_HUSTLE:
@@ -56,14 +60,20 @@ export const reducer = (state, action) => {
         ...state,
         disposableCoins: state.disposableCoins + HUSTLES[action.hustle].rate
       };
+
     case USE_PASSIVE_HUSTLE:
       let newDisposableCoins = 0;
-
+      console.log("hello");
       for (let hustlerType of Object.keys(HUSTLERS)) {
         if (state.hustlers[hustlerType]) {
           newDisposableCoins += HUSTLERS[hustlerType].rate;
         }
       }
+
+      console.log({
+        ...state,
+        disposableCoins: state.disposableCoins + newDisposableCoins
+      });
 
       return {
         ...state,
@@ -87,19 +97,53 @@ export const reducer = (state, action) => {
       };
 
     case BUY_HUSTLER:
-      return {
-        ...state,
-        disposableCoins: state.disposableCoins - HUSTLES[action.hustler].cost,
-        hustlers: {
-          ...state.hustlers,
-          [action.hustler]: true
-        }
-      };
+      console.log(state.disposableCoins >= HUSTLERS[action.hustler].cost);
+      // cost of hustlers
+      if (state.disposableCoins >= HUSTLERS[action.hustler].cost) {
+        console.log({
+          ...state,
+          disposableCoins:
+            state.disposableCoins - HUSTLERS[action.hustler].cost,
+          hustlers: {
+            ...state.hustlers,
+            [action.hustler]: true
+          }
+        });
+        return {
+          ...state,
+          disposableCoins:
+            state.disposableCoins - HUSTLERS[action.hustler].cost,
+          hustlers: {
+            ...state.hustlers,
+            [action.hustler]: true
+          }
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
 
+    // case BUY_SKIN:
+    //   // cost of hustlers
+    //   return {
+    //     ...state,
+    //     disposableCoins: state.disposableCoins - HUSTLERS[action.hustler].cost,
+    //     hustlers: {
+    //       ...state.hustlers,
+    //       [action.hustler]: true
+    //     }
+    //   };
+
+    // case buy skin
+    // when you click the button, progress bar increnets
     default:
       throw new Error(`${action.type} is not a valid action.`);
   }
 };
+// IMPORTANT --- figure this out
+
+// setInterval(dispatch(USE_PASSIVE_HUSTLE, 1000))
 
 // IMPORTANT -- This is our provider. Basically, whatever is wrapped
 // in here has the context that we've given it.
@@ -121,60 +165,3 @@ export const GlobalProvider = ({ children }) => {
 export function useGlobalState() {
   return useContext(GlobalContext);
 }
-
-// ----------------------------------------
-// old stuff
-
-// const ClickContext = createContext(null);
-// const AutoIncContext= createContext(null)
-
-// export let initialState = 0;
-// export let autoState = 0;
-
-// export function useClickState() {
-// return useContext(ClickContext);
-// }
-
-/////////////
-
-// export function reducerClick(state, action) {
-//   switch (action.type) {
-//     case "INCREMENT":
-//       return state.coins + 1;
-//     default:
-//       return state;
-//     }
-//   }
-
-// export function autoInc (state, action){
-//     switch(action.type){
-//         case "AUTO":
-//             return  state + 1
-//             default:
-//                 return state;
-//             }
-//         }
-
-// export function ProviderClick({ children, reducer, initialState }) {
-//   return (
-//     <ClickContext.Provider value={useReducer(reducerClick, initialState)}>
-//       {children}
-//     </ClickContext.Provider>
-//   );
-// }
-
-// export function ProviderAuto({children, reducer, autoState}){
-//     return(
-//         <AutoIncContext.Provider value = {useReducer(autoInc, autoState)}>
-//             {children}
-//         </AutoIncContext.Provider>
-//     )
-// }
-
-// export function useClickState() {
-//   return useContext(ClickContext);
-// }
-
-// export function useAutoState(){
-//         return useContext(AutoIncContext)
-// }
