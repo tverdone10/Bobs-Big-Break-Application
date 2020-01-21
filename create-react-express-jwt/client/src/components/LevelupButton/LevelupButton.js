@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const HustleButton = () => {
+const LevelupButton = () => {
   return (
     <div style={{textAlign: "right", width: '100%'}}>
       <button className="button is-large">
@@ -27,4 +27,4 @@ const HustleButton = () => {
   );
 };
 
-export default HustleButton;
+export default LevelupButton;
