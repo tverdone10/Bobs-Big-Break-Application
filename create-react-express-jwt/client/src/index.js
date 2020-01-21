@@ -19,7 +19,9 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
-import Inventory from './pages/Inventory'
+import Inventory from './pages/Inventory';
+import Hustles from './pages/Hustles';
+import Hustlers from './pages/Hustlers';
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem('id_token')) {
@@ -58,6 +60,12 @@ ReactDOM.render(
           </ProtectedRoute>
           <ProtectedRoute exact path="/inventory">
            <Inventory />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/hustles">
+           <Hustles />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/hustlers">
+           <Hustlers />
           </ProtectedRoute>
         </Switch>
       </div>
