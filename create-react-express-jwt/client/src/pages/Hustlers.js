@@ -1,6 +1,21 @@
 import React from 'react';
 
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER
+} from "../actions";
+
+import { useGlobalState } from "../useGlobalState";
+
+import { HUSTLERS, HUSTLES } from "../hustlerConfig";
+
 const Hustlers = () => {
+
+  const { state, dispatch } = useGlobalState();
+
     return(
         <div className="container">
       <i className="far fa-window-close fa-4x" style={{marginTop: '10px'}}></i>
@@ -19,7 +34,8 @@ const Hustlers = () => {
           <p className="description">RUN SPARE CHANGE HUSTLE</p>
           <b className="hustlecost">$2000</b>
           </div>
-          <button className="button">
+          <button className="button"
+          onClick={() => dispatch({ type: BUY_HUSTLER, hustler: "jeffPasos" })}>
             BUY
           </button>
         </div>
@@ -36,7 +52,9 @@ const Hustlers = () => {
           <p className="description">RUN SQUEEGEE HUSTLE</p>
           <b className="hustlecost">$12000</b>
           </div>
-          <button className="button">
+          <button className="button"
+          onClick={() => dispatch({ type: BUY_HUSTLER, hustler: "rustyShackleford" })}>
+          >
             BUY
           </button>
         </div>

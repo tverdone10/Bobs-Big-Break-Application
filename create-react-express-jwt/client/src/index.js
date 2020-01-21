@@ -12,6 +12,9 @@ import './index.css';
 import App from './App';
 import {AuthProvider, useAuth} from './utils/auth'
 
+import { GlobalProvider } from "./useGlobalState";
+
+
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -45,6 +48,7 @@ ReactDOM.render(
     <Router>
       <div>
         {/* <Navbar /> */}
+        <GlobalProvider>
         <Switch>
           <ProtectedRoute exact path="/">
             <App />
@@ -68,6 +72,7 @@ ReactDOM.render(
            <Hustlers />
           </ProtectedRoute>
         </Switch>
+        </GlobalProvider>
       </div>
     </Router>
   </AuthProvider>,

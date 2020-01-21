@@ -7,9 +7,24 @@ import UnlockHustle from '../components/UnlockHustle/UnlockHustle';
 import NavButtons from '../components/NavButtons/NavButtons';
 import Navbar from '../components/Navbar/Navbar';
 
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER
+} from "../actions";
+
+import { useGlobalState } from "../useGlobalState";
+
+import { HUSTLERS, HUSTLES } from "../hustlerConfig";
+
+
 
 const Home = () => {
       const [progressValue, setPregressValue] = useState(0)
+      const { state, dispatch } = useGlobalState();
+
 
       useEffect(() => {
         let seconds = 0
@@ -43,7 +58,7 @@ const Home = () => {
                 marginTop: '20px'
               }}
             >
-              $143
+              ${state.disposableCoins}
             </p>
             <UnlockHustle cost={20000}/>
             <UnlockHustle cost={1500}/>
@@ -89,14 +104,18 @@ const Home = () => {
               <ProgressBar value={progressValue} />
               <LevelupButton />
             </div>
-            <div style={{textAlign: 'right'}}>
+            <div style={{textAlign: 'right'}}
+            onClick={() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
+            >
               <img
                 src="./img/BBB_character_icon.png"
                 width="200px"
                 style={{ clear:"both", float: "right", marginRight: "10px"}}
                 alt=""
+                
               />
             </div>
+            <button onClick={() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}>hello click me</button>
             <NavButtons />
           </div>
         );
