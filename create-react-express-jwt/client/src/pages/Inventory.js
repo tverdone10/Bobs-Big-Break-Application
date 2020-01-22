@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 const Inventory = () => {
   return (
     <div className="container">
+      <Link to="/profile">
       <i className="far fa-window-close fa-4x" style={{marginTop: '10px'}}></i>
+      </Link>
       <h1 className="header">Inventory</h1>
       <hr />
       <img

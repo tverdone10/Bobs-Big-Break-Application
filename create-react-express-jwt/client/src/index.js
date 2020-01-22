@@ -48,7 +48,6 @@ ReactDOM.render(
   <AuthProvider>
     <Router>
       <div>
-        <Navbar />
         <GlobalProvider>
         <Switch>
           <ProtectedRoute exact path="/">

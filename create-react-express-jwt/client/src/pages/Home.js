@@ -18,6 +18,7 @@ import {
 import { useGlobalState } from "../useGlobalState";
 
 import { HUSTLERS, HUSTLES } from "../hustlerConfig";
+import { Link } from 'react-router-dom';
 
 
 
@@ -47,7 +48,7 @@ const Home = () => {
 
   return (
     <div>
-      
+      <Navbar />
       <UnlockHustle cost={20000} />
       <UnlockHustle cost={5000} />
       <div
@@ -66,7 +67,7 @@ const Home = () => {
             borderBottom: '2px',
             borderTopRightRadius: '5px',
             borderTopLeftRadius: '5px',
-            boxShadow: '2px 2px 10px black',
+            boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.2)',
           }}
         >
           <img
@@ -112,12 +113,15 @@ const Home = () => {
         <LevelupButton />
       </div>
       <div style={{textAlign: 'right'}}>
+        <Link to="/inventory">
         <img
           src="./img/BBB_character_icon.png"
           width="200px"
           style={{clear: 'both', float: 'right', marginRight: '10px'}}
           alt=""
         />
+
+        </Link>
       </div>
       <NavButtons />
     </div>
