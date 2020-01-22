@@ -15,7 +15,7 @@ const Hustlers = () => {
             style={{float: 'left'}}
           />
           <div className="hustleinfo">
-          <h1 className="hustletitle">JEFF PASOS</h1>
+          <h1 className="hustletitle">JEFF PESOS</h1>
           <p className="description">RUN SPARE CHANGE HUSTLE</p>
           <b className="hustlecost">$2000</b>
           </div>
