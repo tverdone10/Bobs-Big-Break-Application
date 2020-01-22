@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import "./Hustles.css";
 
 const Hustles = ()=> {
     return(
         <div className="container">
+          <Link to="/profile">
       <i className="far fa-window-close fa-4x"></i>
+          </Link>
       <h1 className="header">Hustles</h1>
       <p className="header-description">PURCHASE THESE BOOSTERS TO GIVE YOUR HUSTLE AN UPGRADE</p>
       <hr />

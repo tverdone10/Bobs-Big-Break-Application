@@ -1,6 +1,17 @@
 import React from 'react';
 import './style.css';
 
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER
+} from "../../actions";
+
+import { useGlobalState } from "../../useGlobalState";
+
+import { HUSTLERS, HUSTLES } from "../../hustlerConfig";
 
 
 // let Cost = props => [
@@ -15,6 +26,10 @@ import './style.css';
 
 
 const UnlockHustle = ({cost}) => {
+
+  const { state, dispatch } = useGlobalState();
+
+
   return (
     <section className="hero is-medium is-danger is-bold">
       <div className="hero-body">
@@ -25,6 +40,7 @@ const UnlockHustle = ({cost}) => {
             <br />
             <button
               className="button is-large unlock"
+              onClick={() => dispatch({ type: BUY_HUSTLE, hustle: "squeegee" })}
               style={{
                 display: 'block',
                 margin: '0 auto',

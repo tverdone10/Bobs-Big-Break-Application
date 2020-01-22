@@ -7,41 +7,47 @@ import UnlockHustle from '../components/UnlockHustle/UnlockHustle';
 import NavButtons from '../components/NavButtons/NavButtons';
 import Navbar from '../components/Navbar/Navbar';
 
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER
+} from "../actions";
+
+import { useGlobalState } from "../useGlobalState";
+
+import { HUSTLERS, HUSTLES } from "../hustlerConfig";
+
+
+
 const Home = () => {
-  const [progressValue, setProgressValue] = useState(0);
+      const [progressValue, setProgressValue] = useState(0)
+      const { state, dispatch } = useGlobalState();
 
-  useEffect(() => {
-    let seconds = 0;
-    const intervalId = setInterval(() => {
-      if (seconds < 10) {
-        seconds += 1;
-        setProgressValue(seconds * 10);
-      } else {
-        clearInterval(intervalId);
-        // setPregressValue = 0
-      }
-    }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+      useEffect(() => {
+        let seconds = 0
+        const intervalId = setInterval(() => {
+          if (seconds < 10) {
+            seconds += 1
+            setProgressValue(seconds * 10)
+          } else {
+            clearInterval(intervalId)
+            // setPregressValue = 0
+          }
+        }, 1000)
+    
+        return () => clearInterval(intervalId)
+      }, [])
+
+
+
+
 
   return (
     <div>
-      <p
-        style={{
-          display: 'block',
-          position: 'fixed',
-          zIndex: '5',
-          fontSize: '2rem',
-          fontWeight: 'bold',
-          right: '47%',
-          color: 'white',
-          textShadow: '3px 3px 10px black',
-          marginTop: '20px',
-        }}
-      >
-        $143
-      </p>
+      
       <UnlockHustle cost={20000} />
       <UnlockHustle cost={5000} />
       <div
