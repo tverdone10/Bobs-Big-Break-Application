@@ -25,6 +25,7 @@ import Signup from './pages/Signup';
 import Inventory from './pages/Inventory';
 import Hustles from './pages/Hustles';
 import Hustlers from './pages/Hustlers';
+import Navbar from '../src/components/Navbar'
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem('id_token')) {
@@ -47,7 +48,6 @@ ReactDOM.render(
   <AuthProvider>
     <Router>
       <div>
-        {/* <Navbar /> */}
         <GlobalProvider>
         <Switch>
           <ProtectedRoute exact path="/">

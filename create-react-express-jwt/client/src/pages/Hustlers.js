@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import {
   USE_HUSTLE,
@@ -18,7 +19,9 @@ const Hustlers = () => {
 
     return(
         <div className="container">
+          <Link to='/profile'>
       <i className="far fa-window-close fa-4x" style={{marginTop: '10px'}}></i>
+          </Link>
       <h1 className="header">Hustlers</h1>
       <hr />
       
@@ -30,7 +33,7 @@ const Hustlers = () => {
             style={{float: 'left'}}
           />
           <div className="hustleinfo">
-          <h1 className="hustletitle">JEFF PASOS</h1>
+          <h1 className="hustletitle">JEFF PESOS</h1>
           <p className="description">RUN SPARE CHANGE HUSTLE</p>
           <b className="hustlecost">$2000</b>
           </div>

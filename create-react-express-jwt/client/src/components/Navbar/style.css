@@ -1,0 +1,14 @@
+.navbar {
+background-color: transparent;
+z-index: 100;
+position: fixed;
+left: 50%;
+transform: translate(-50%, 0);
+}
+
+.bank {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}

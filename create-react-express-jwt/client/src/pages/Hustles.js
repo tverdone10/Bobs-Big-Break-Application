@@ -1,11 +1,15 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import "./Hustles.css";
 
 const Hustles = ()=> {
     return(
         <div className="container">
+          <Link to="/profile">
       <i className="far fa-window-close fa-4x"></i>
+          </Link>
       <h1 className="header">Hustles</h1>
+      <p className="header-description">PURCHASE THESE BOOSTERS TO GIVE YOUR HUSTLE AN UPGRADE</p>
       <hr />
       
       <div className="box column">
@@ -24,7 +28,7 @@ const Hustles = ()=> {
           </button>
         </div>
 
-        <div className="box column" style={{margin: '10px', overflow: "auto", width: '100%'}}>
+        <div className="box column">
           <img
             src="./img/BBB_hustles_squeegee.png"
             width="100px"
