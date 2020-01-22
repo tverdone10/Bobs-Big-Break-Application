@@ -4,17 +4,15 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
 
 import './index.css';
 import App from './App';
-import {AuthProvider, useAuth} from './utils/auth'
+import {AuthProvider, useAuth} from './utils/auth';
 
-import { GlobalProvider } from "./useGlobalState";
-
-
+import {GlobalProvider} from './useGlobalState';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -25,7 +23,7 @@ import Signup from './pages/Signup';
 import Inventory from './pages/Inventory';
 import Hustles from './pages/Hustles';
 import Hustlers from './pages/Hustlers';
-import Navbar from '../src/components/Navbar'
+import Navbar from '../src/components/Navbar';
 
 // Here is if we have an id_token in localStorage
 if (localStorage.getItem('id_token')) {
@@ -36,8 +34,8 @@ if (localStorage.getItem('id_token')) {
   ] = `Bearer ${localStorage.getItem('id_token')}`;
 }
 
-function ProtectedRoute({ children, ...rest }) {
-  const { isLoggedIn } = useAuth();
+function ProtectedRoute({children, ...rest}) {
+  const {isLoggedIn} = useAuth();
   if (isLoggedIn) {
     return children;
   }
@@ -49,29 +47,29 @@ ReactDOM.render(
     <Router>
       <div>
         <GlobalProvider>
-        <Switch>
-          <ProtectedRoute exact path="/">
-            <App />
-          </ProtectedRoute>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-          <ProtectedRoute exact path="/profile">
-           <Home />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/inventory">
-           <Inventory />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/hustles">
-           <Hustles />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/hustlers">
-           <Hustlers />
-          </ProtectedRoute>
-        </Switch>
+          <Switch>
+            <ProtectedRoute exact path="/">
+              <App />
+            </ProtectedRoute>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <ProtectedRoute exact path="/profile">
+              <Home />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/inventory">
+              <Inventory />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/hustles">
+              <Hustles />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/hustlers">
+              <Hustlers />
+            </ProtectedRoute>
+          </Switch>
         </GlobalProvider>
       </div>
     </Router>

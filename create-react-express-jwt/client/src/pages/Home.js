@@ -62,6 +62,7 @@ const Home = () => {
         }}
       >
         <button
+        onClick={() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
         className="spare-change-button"
           style={{
             borderBottom: '2px',
