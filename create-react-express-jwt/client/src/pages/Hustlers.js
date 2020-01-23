@@ -21,6 +21,35 @@ const Hustlers = () => {
   function buyJeff(){
 
 
+    dispatch({type: BUY_HUSTLER, hustler: 'rustyShackleford'})    
+
+    setClicked({isClicked: true})  
+    dispatch({type: BUY_HUSTLER, hustler: 'rustyShackleford'})    
+
+    let newDisposableCoins = 0;
+    console.log("hello");
+  //   for (let hustlerType of Object.keys(HUSTLERS)) {
+  //     if (state.hustlers[hustlerType]) {
+  //       newDisposableCoins += HUSTLERS[hustlerType].rate;
+  //     }
+  //   }
+  //   ...state,
+  //   disposableCoins: state.disposableCoins + newDisposableCoins
+  // });
+
+
+
+  }
+
+  // if clicked(isClicked: true){
+
+  //   dispatch({type: BUY_HUSTLER, hustler: 'rustyShackleford'})    
+
+  // }
+
+  function buyRusty(){
+
+
     dispatch({type: BUY_HUSTLER, hustler: 'jeffPasos'})    
     setClicked({isClicked: true})  
   }

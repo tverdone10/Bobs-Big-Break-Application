@@ -75,6 +75,20 @@ app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => 
   res.send('You are authenticated'); //Sending some response when authenticated
 });
 
+app.get('/api/users/:id/coins', isAuthenticated, (req, res) =>{
+  if (req.user.id !== req.params.id) {
+    return res.status(403).end()
+  }
+  else {
+    res.send('getting coins your')
+  }
+  console.log(req.user)
+  console.log(req.params)
+  // prevent user from accessing other users
+  // 
+  res.end()
+})
+
 // Error handling
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') { // Send the error rather than to show it on the console

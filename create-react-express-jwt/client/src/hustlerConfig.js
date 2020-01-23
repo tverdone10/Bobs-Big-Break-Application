@@ -22,6 +22,9 @@ export const HUSTLERS = {
 
 }
 
+// we know when it started
+// we know what now is 
+// calculate time since 
 
 export const CLOTHING = {
     hat: {

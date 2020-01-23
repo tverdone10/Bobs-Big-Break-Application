@@ -9,3 +9,16 @@ export default {
     return axios.post('api/signup', {username: username, email: email, password: password});
   }
 };
+
+
+// retrieve coins when you log back in
+
+export const getCoins = (id) => {
+  return axios.get(`/api/users/${id}/coins`);
+}
+
+export const logCoins = coins => {
+  return axios.post("/api/coins", {
+    coins
+  })
+}

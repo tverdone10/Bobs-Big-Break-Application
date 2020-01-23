@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React, { useReducer, createContext, useContext, useState, useEffect } from "react";
 import {
   USE_HUSTLE,
   USE_PASSIVE_HUSTLE,
@@ -8,9 +8,12 @@ import {
   BUY_SKIN
 } from "./actions";
 
+import { getCoins } from "../src/utils/API"
+
 import { HUSTLERS, HUSTLES } from "./hustlerConfig";
 
 // IMPORTANT this is our state that will be used everywhere.
+
 
 let initState = {
   disposableCoins: 0,
@@ -64,9 +67,9 @@ export const reducer = (state, action) => {
     case USE_PASSIVE_HUSTLE:
       let newDisposableCoins = 0;
       console.log("hello");
-      for (let hustlerType of Object.keys(HUSTLERS)) {
-        if (state.hustlers[hustlerType]) {
-          newDisposableCoins += HUSTLERS[hustlerType].rate;
+      for (let hustler of Object.keys(HUSTLERS)) {
+        if (state.hustlers[hustler]) {
+          newDisposableCoins += HUSTLERS[hustler].rate;
         }
       }
 
