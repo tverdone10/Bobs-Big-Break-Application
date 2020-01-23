@@ -49,7 +49,13 @@ app.post('/api/login', (req, res) => {
 
 // SIGNUP ROUTE
 app.post('/api/signup', (req, res) => {
-  db.User.create(req.body)
+  const newUserData = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    hustles: [db.GameConfig.hustles.coinJar]
+  }
+  db.User.create(newUserData)
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
 });

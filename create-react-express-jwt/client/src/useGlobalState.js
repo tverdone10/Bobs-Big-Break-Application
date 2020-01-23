@@ -5,7 +5,8 @@ import {
   INITIALIZE_PASSIVE_INTERVAL,
   BUY_HUSTLE,
   BUY_HUSTLER,
-  BUY_SKIN
+  BUY_SKIN,
+  INIT_GAME
 } from "./actions";
 
 import { getCoins } from "../src/utils/API"
@@ -17,7 +18,7 @@ import { HUSTLERS, HUSTLES } from "./hustlerConfig";
 
 let initState = {
   disposableCoins: 0,
-  everCoins: 0,
+  // everCoins: 0,
   passiveInterval: null,
   hustles: {
     coinJar: {
@@ -58,6 +59,14 @@ export const reducer = (state, action) => {
   // WHENEVER SOMETHING HAPPENS, SET IT UP TO POST TO THE DB
   // WHENEVER YOU START THE APP, GET FROM MONGOOSE
   switch (action.type) {
+    case INIT_GAME: 
+    return{
+      ...state,
+     disposableCoins: action.disposableCoins,
+     hustles: action.hustles,
+     hustlers: action.hustlers
+    };
+
     case USE_HUSTLE:
       return {
         ...state,
