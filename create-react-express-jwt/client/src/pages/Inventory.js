@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import {Link} from 'react-router-dom';
+import Navbar from '../components/Navbar/Navbar';
 
 const Inventory = () => {
   return (
     <div className="container">
+      <Navbar style={{position: 'absolute'}} />
       <Link to="/profile">
-      <i className="far fa-window-close fa-4x" style={{marginTop: '10px'}}></i>
+        <i
+          className="far fa-window-close fa-4x"
+          style={{marginTop: '10px'}}
+        ></i>
       </Link>
       <h1 className="header">Inventory</h1>
       <hr />
@@ -15,7 +20,7 @@ const Inventory = () => {
         alt=""
         style={{display: 'block', margin: '0 auto'}}
       />
-      <hr />
+
       <div className="columns">
         <div className="box column" style={{height: '100px', margin: '10px'}}>
           <img

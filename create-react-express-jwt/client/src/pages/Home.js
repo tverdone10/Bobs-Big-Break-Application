@@ -7,6 +7,7 @@ import UnlockHustle from '../components/UnlockHustle/UnlockHustle';
 import NavButtons from '../components/NavButtons/NavButtons';
 import Navbar from '../components/Navbar/Navbar';
 
+
 import {
   USE_HUSTLE,
   USE_PASSIVE_HUSTLE,
@@ -26,21 +27,24 @@ const Home = () => {
       const [progressValue, setProgressValue] = useState(0)
       const { state, dispatch } = useGlobalState();
 
+  function SpareChangeProgress() {
+    // useEffect(() => {
+      let seconds = 0
+      const intervalId = setInterval(() => {
+        {dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
+        if (seconds < 9) {
+          seconds += 1
+          setProgressValue(seconds * 10)
+        } else {
+          clearInterval(intervalId)
+          setProgressValue(0)
+        }
+      }, 1000)
+  
+      return () => clearInterval(intervalId)
+    // }, [])
 
-      useEffect(() => {
-        let seconds = 0
-        const intervalId = setInterval(() => {
-          if (seconds < 10) {
-            seconds += 1
-            setProgressValue(seconds * 10)
-          } else {
-            clearInterval(intervalId)
-            // setPregressValue = 0
-          }
-        }, 1000)
-    
-        return () => clearInterval(intervalId)
-      }, [])
+  }
 
 
 
@@ -62,6 +66,9 @@ const Home = () => {
         }}
       >
         <button
+        onClick= {SpareChangeProgress}
+        // {() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
+        
         className="spare-change-button"
           style={{
             borderBottom: '2px',

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar/Navbar'
 import "./Hustles.css";
 
 const Hustles = ()=> {
     return(
         <div className="container">
+          <Navbar style={{ position: 'absolute'}}/>
           <Link to="/profile">
       <i className="far fa-window-close fa-4x"></i>
           </Link>

@@ -15,7 +15,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "author": "Travis Thompson, John Desrosiers",
+  "author": "Tommy Verone, Reggie Alleyne, Kevin Heintz, Ryan Braudo",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.0.2",
