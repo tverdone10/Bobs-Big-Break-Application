@@ -4,6 +4,7 @@ import LevelupButton from '../components/LevelupButton/LevelupButton';
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 import HustleLevel from '../components/HustleLevel/HustleLevel';
 import UnlockHustle from '../components/UnlockHustle/UnlockHustle';
+import UnlockHustleTwo from '../components/UnlockHustleTwo/UnlockHustleTwo';
 import NavButtons from '../components/NavButtons/NavButtons';
 import Navbar from '../components/Navbar/Navbar';
 
@@ -26,6 +27,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
       const [progressValue, setProgressValue] = useState(0)
       const { state, dispatch } = useGlobalState();
+      const [clicked, setClicked] = useState({isClicked: false}) 
 
   function SpareChangeProgress() {
     // useEffect(() => {
@@ -47,14 +49,69 @@ const Home = () => {
   }
 
 
+  function SqueegeeProgress() {
+    // useEffect(() => {
+      let seconds = 0
+      const intervalId = setInterval(() => {
+        {dispatch({ type: USE_HUSTLE, hustle: "squeegee" })}
+        if (seconds < 9) {
+          seconds += 1
+          setProgressValue(seconds * 10)
+        } else {
+          clearInterval(intervalId)
+          setProgressValue(0)
+        }
+      }, 1000)
+  
+      return () => clearInterval(intervalId)
+    // }, [])
 
+  }
+
+  let hide = false
+
+  function buySqueegee(){
+
+
+    dispatch({ type: BUY_HUSTLE, hustle: "squeegee" })
+    setClicked({isClicked: true})  
+  }
 
 
   return (
     <div>
       <Navbar />
       <UnlockHustle cost={20000} />
-      <UnlockHustle cost={5000} />
+      {/* <UnlockHustleTwo cost={5000} /> */}
+     {clicked.isClicked === false ? <section className="hero is-medium is-danger is-bold squeegeebutton">
+      <div className="hero-body">
+        <div className="container">
+          <div className="container">
+            <h1 className="unlock-header">Next Hustle</h1>
+            <b className="cost">$5000</b>
+            <br />
+            <button
+              className="button is-large unlock"
+              onClick={buySqueegee}
+              style={{
+                display: 'block',
+                margin: '0 auto',
+                textAlign: 'center',
+                backgroundColor: '#FEBE40',
+                borderBottom: '#D39C3C solid 5px',
+              }}
+            >
+              <span className="icon is-medium">
+                <i className="fas fa-lock"></i>
+              </span>
+              <span>Unlock</span>
+              <br />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section> : null
+}
       <div
         style={{
           textAlign: 'center',
@@ -89,6 +146,31 @@ const Home = () => {
             alt=""
           />
         </button>
+        { clicked.isClicked === true ? <button
+        onClick= {SqueegeeProgress}
+        // {() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
+        
+        className="spare-change-button"
+          style={{
+            borderBottom: '2px',
+            borderTopRightRadius: '5px',
+            borderTopLeftRadius: '5px',
+            boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <img
+            src="./img/BBB_hustles_spare_change.png"
+            style={{
+              display: 'block',
+              textAlign: 'right',
+              width: '150px',
+              borderTopRightRadius: '5px',
+              borderTopLeftRadius: '5px',
+            }}
+            alt=""
+          />
+        </button> : null
+        } 
       </div>
       <div
         className="box"

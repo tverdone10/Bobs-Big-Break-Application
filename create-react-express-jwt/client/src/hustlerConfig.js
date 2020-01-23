@@ -4,19 +4,19 @@ export const HUSTLES = {
         rate: 100
     },
     squeegee: {
-        cost: 1500,
-        rate: 10
+        cost: 5000,
+        rate: 250
     }
 }
 
 export const HUSTLERS = {
     jeffPasos: {
-        cost: 100,
+        cost: 2000,
         rate: 1
     },
 
     rustyShackleford: {
-        cost: 500,
+        cost: 12000,
         rate: 10
     }
 

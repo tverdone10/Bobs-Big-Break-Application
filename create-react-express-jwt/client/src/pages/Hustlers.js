@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 
@@ -16,6 +16,14 @@ import {HUSTLERS, HUSTLES} from '../hustlerConfig';
 
 const Hustlers = () => {
   const {state, dispatch} = useGlobalState();
+  const [clicked, setClicked] = useState({isClicked: false}) 
+
+  function buyJeff(){
+
+
+    dispatch({type: BUY_HUSTLER, hustler: 'jeffPasos'})    
+    setClicked({isClicked: true})  
+  }
 
   return (
     <div className="container">
@@ -29,6 +37,7 @@ const Hustlers = () => {
       <h1 className="header">Hustlers</h1>
       <hr />
 
+      { clicked.isClicked === false ? 
       <div
         className="box column"
         style={{margin: '10px', overflow: 'auto', width: '100%'}}
@@ -39,6 +48,8 @@ const Hustlers = () => {
           alt=""
           style={{float: 'left'}}
         />
+
+
         <div className="hustleinfo">
           <h1 className="hustletitle">JEFF PESOS</h1>
           <p className="description">RUN SPARE CHANGE HUSTLE</p>
@@ -46,11 +57,12 @@ const Hustlers = () => {
         </div>
         <button
           className="button"
-          onClick={() => dispatch({type: BUY_HUSTLER, hustler: 'jeffPasos'})}
+          onClick={buyJeff}
         >
           BUY
         </button>
-      </div>
+      </div> : null
+  }
 
       <div
         className="box column"
