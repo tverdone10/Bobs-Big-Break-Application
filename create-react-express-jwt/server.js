@@ -62,6 +62,7 @@ app.post('/api/signup', (req, res) => {
 
 // Any route with isAuthenticated is protected and you need a valid token
 // to access
+
 app.get('/api/user/:id', isAuthenticated, (req, res) => {
   db.User.findById(req.params.id).then(data => {
     if(data) {
@@ -99,24 +100,23 @@ app.get('/api/users/:id/coins', isAuthenticated, (req, res) =>{
 
 
 app.put('/api/users/:id/coins', isAuthenticated, (req, res) => {
-  const newCoins = {
-    coins: req.body.coins
-  }
   if (req.user.id !== req.params.id) {
+
     // if you're not logged in as the person you're 
     // asking for info for, you're not allowed in
     return res.status(403).end()
   }
  
-  db.User.update(newCoins)
-  .then(data => res.json(data))
-  .catch(err => res.status(400).json(err));
-  
-  // get this user (find by id and update
-  // let the client know that we're good
+  db.User.findOneAndUpdate({
+    coins: req.body.coins  
+  }).then(data => {
+    res.json(data)
+  })
+
   console.log(req.body.coins)
   console.log(req.params)
 })
+
 
 // Error handling
 app.use(function (err, req, res, next) {

@@ -42,7 +42,8 @@ const UnlockHustle = ({cost}) => {
             <br />
             <button
               className="button is-large unlock"
-              onClick={() => dispatch({ type: BUY_HUSTLE, hustle: "squeegee" })}
+              onClick={console.log(state)}
+              // onClick={() => dispatch({ type: BUY_HUSTLE, hustle: "squeegee" })}
               style={{
                 display: 'block',
                 margin: '0 auto',
