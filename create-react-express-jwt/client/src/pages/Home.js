@@ -78,12 +78,12 @@ const Home = () => {
     API.getUser(user.id)
       .then(res => {
         console.log(res)
-        dispatch({
-          type: INIT_GAME,
-          disposableCoins: res.data.coins,
-          hustles: getHustlesFromUserData(res.data),
-          hustlers: getHustlersFromUserData(res.data)
-        });
+        // dispatch({
+        //   type: INIT_GAME,
+        //   disposableCoins: res.data.coins,
+        //   hustles: getHustlesFromUserData(res.data),
+        //   hustlers: getHustlersFromUserData(res.data)
+        // });
         console.log(res)
       })
       .catch(error => console.log(error));
@@ -107,17 +107,11 @@ const Home = () => {
         console.log(user.id)
         console.log(user.hustles)
 
-
-      //   API.getUser(user.id)
-      //   .then(res => {
-      //     console.log(res)
-      //   API.logCoins(state.disposableCoins)
-      //   .then (res => {
-      //     console.log(res)
-      //   })
-
-      //   .catch(err => alert(err))
-      // })
+        // API.logCoins(state.disposableCoins).then (res => {
+        //   console.log(res)
+        // }).catch(err => alert(err))
+      
+    
       }
     }, 1000);
 
@@ -157,7 +151,7 @@ const Home = () => {
       <Navbar />
       <UnlockHustle cost={20000} />
       {/* <UnlockHustleTwo cost={5000} /> */}
-      {clicked.isClicked === false ? (
+      {!state.hustles.squeegee ? (
         <section className="hero is-medium is-danger is-bold squeegeebutton">
           <div className="hero-body">
             <div className="container">
