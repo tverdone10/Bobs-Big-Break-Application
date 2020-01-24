@@ -1,20 +1,24 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React, { useReducer, createContext, useContext, useState, useEffect } from "react";
 import {
   USE_HUSTLE,
   USE_PASSIVE_HUSTLE,
   INITIALIZE_PASSIVE_INTERVAL,
   BUY_HUSTLE,
   BUY_HUSTLER,
-  BUY_SKIN
+  BUY_SKIN,
+  INIT_GAME
 } from "./actions";
+
+import { getCoins } from "../src/utils/API"
 
 import { HUSTLERS, HUSTLES } from "./hustlerConfig";
 
 // IMPORTANT this is our state that will be used everywhere.
 
+
 let initState = {
   disposableCoins: 0,
-  everCoins: 0,
+  // everCoins: 0,
   passiveInterval: null,
   hustles: {
     coinJar: {
@@ -55,6 +59,14 @@ export const reducer = (state, action) => {
   // WHENEVER SOMETHING HAPPENS, SET IT UP TO POST TO THE DB
   // WHENEVER YOU START THE APP, GET FROM MONGOOSE
   switch (action.type) {
+    case INIT_GAME: 
+    return{
+      ...state,
+     disposableCoins: action.disposableCoins,
+     hustles: action.hustles,
+     hustlers: action.hustlers
+    };
+
     case USE_HUSTLE:
       return {
         ...state,
@@ -64,9 +76,9 @@ export const reducer = (state, action) => {
     case USE_PASSIVE_HUSTLE:
       let newDisposableCoins = 0;
       console.log("hello");
-      for (let hustlerType of Object.keys(HUSTLERS)) {
-        if (state.hustlers[hustlerType]) {
-          newDisposableCoins += HUSTLERS[hustlerType].rate;
+      for (let hustler of Object.keys(HUSTLERS)) {
+        if (state.hustlers[hustler]) {
+          newDisposableCoins += HUSTLERS[hustler].rate;
         }
       }
 

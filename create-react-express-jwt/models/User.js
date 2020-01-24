@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
+const GameConfig = require('./GameConfig');
 
 const UserSchema = new Schema({
   username: {
@@ -25,7 +26,15 @@ const UserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+
+  coins: {
+    type: Number,
+    default: 0
+  },
+
+  hustles: [{}],
+  hustlers: [{}]
 });
 
 // Execute before each user.save() call

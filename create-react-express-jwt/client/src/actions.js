@@ -4,4 +4,4 @@ export const INITIALIZE_PASSIVE_INTERVAL = "INITIALIZE_PASSIVE_INTERVAL"
 export const BUY_HUSTLE = "BUY_HUSTLE"
 export const BUY_HUSTLER = "BUY_HUSTLER"
 export const BUY_SKIN = "BUY_SKIN"
-
+export const INIT_GAME = "INIT_GAME"

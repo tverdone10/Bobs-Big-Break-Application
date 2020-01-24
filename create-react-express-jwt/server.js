@@ -49,7 +49,13 @@ app.post('/api/login', (req, res) => {
 
 // SIGNUP ROUTE
 app.post('/api/signup', (req, res) => {
-  db.User.create(req.body)
+  const newUserData = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    hustles: [db.GameConfig.hustles.coinJar]
+  }
+  db.User.create(newUserData)
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
 });
@@ -74,6 +80,43 @@ if (process.env.NODE_ENV === "production") {
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated
 });
+
+app.get('/api/users/:id/coins', isAuthenticated, (req, res) =>{
+  if (req.user.id !== req.params.id) {
+    // if you're not logged in as the person you're 
+    // asking for info for, you're not allowed in
+    return res.status(403).end()
+  }
+  else {
+    res.send('getting coins your')
+  }
+  console.log(req.user)
+  console.log(req.params)
+  // prevent user from accessing other users
+  // 
+  res.end()
+})
+
+
+app.put('/api/users/:id/coins', isAuthenticated, (req, res) => {
+  const newCoins = {
+    coins: req.body.coins
+  }
+  if (req.user.id !== req.params.id) {
+    // if you're not logged in as the person you're 
+    // asking for info for, you're not allowed in
+    return res.status(403).end()
+  }
+ 
+  db.User.update(newCoins)
+  .then(data => res.json(data))
+  .catch(err => res.status(400).json(err));
+  
+  // get this user (find by id and update
+  // let the client know that we're good
+  console.log(req.body.coins)
+  console.log(req.params)
+})
 
 // Error handling
 app.use(function (err, req, res, next) {

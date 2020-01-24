@@ -18,7 +18,7 @@ function Login() {
 
     login(email, password)
       // navigate to the profile page
-      .then(() => history.push('/profile'))
+      .then(() => {history.push('/profile')})
       .catch(err => {
         alert(err.response.data.message);
       });
