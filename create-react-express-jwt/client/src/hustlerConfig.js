@@ -1,5 +1,5 @@
 export const HUSTLES = {
-    coinJar: {
+    spareChange: {
         cost: 0,
         rate: 100
     },
