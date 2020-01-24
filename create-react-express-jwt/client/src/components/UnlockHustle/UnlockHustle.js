@@ -35,7 +35,9 @@ const UnlockHustle = ({cost}) => {
       <div className="hero-body">
         <div className="container">
           <div className="container">
-            <h1 className="unlock-header">Next Hustle</h1>
+            <h1 className="unlock-header">Unlock Recycling</h1>
+            <h1 className="unlock-header">5000 coins per hustle</h1>
+
             <b className="cost">{`$${cost}`}</b>
             <br />
             <button

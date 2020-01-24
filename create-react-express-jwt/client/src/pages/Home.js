@@ -21,6 +21,10 @@ import { useGlobalState } from "../useGlobalState";
 
 import { HUSTLERS, HUSTLES } from "../hustlerConfig";
 import { Link } from "react-router-dom";
+
+
+// import mainTheme from "../assets/music/profile_music.mp3"
+
 import API from "../utils/API";
 import { useAuth } from "../utils/auth";
 
@@ -65,21 +69,28 @@ const Home = () => {
   const { state, dispatch } = useGlobalState();
   const [clicked, setClicked] = useState({ isClicked: false });
  
+  // API.logCoins(state.disposableCoins)
+  // .then (res => {
+  // })
+  // .catch(err => alert(err))
+
   useEffect(() => {
     API.getUser(user.id)
       .then(res => {
+        console.log(res)
         dispatch({
           type: INIT_GAME,
           disposableCoins: res.data.coins,
           hustles: getHustlesFromUserData(res.data),
           hustlers: getHustlersFromUserData(res.data)
         });
+        console.log(res)
       })
       .catch(error => console.log(error));
   }, []);
 
   function SpareChangeProgress() {
-    // useEffect(() => {
+
     let seconds = 0;
     const intervalId = setInterval(() => {
       {
@@ -91,11 +102,27 @@ const Home = () => {
       } else {
         clearInterval(intervalId);
         setProgressValue(0);
+        // post coins to db here
+        console.log(user)
+        console.log(user.id)
+        console.log(user.hustles)
+
+
+      //   API.getUser(user.id)
+      //   .then(res => {
+      //     console.log(res)
+      //   API.logCoins(state.disposableCoins)
+      //   .then (res => {
+      //     console.log(res)
+      //   })
+
+      //   .catch(err => alert(err))
+      // })
       }
     }, 1000);
 
     return () => clearInterval(intervalId);
-    // }, [])
+
   }
 
   function SqueegeeProgress() {
@@ -135,7 +162,8 @@ const Home = () => {
           <div className="hero-body">
             <div className="container">
               <div className="container">
-                <h1 className="unlock-header">Next Hustle</h1>
+                <h1 className="unlock-header">Unlock Squeegee</h1> 
+                <h1 className="unlock-header">2500 coins per hustle</h1>
                 <b className="cost">$5000</b>
                 <br />
                 <button
@@ -197,8 +225,6 @@ const Home = () => {
         {clicked.isClicked === true ? (
           <button
             onClick={SqueegeeProgress}
-            // {() => dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
-
             className="spare-change-button"
             style={{
               borderBottom: "2px",
@@ -208,7 +234,7 @@ const Home = () => {
             }}
           >
             <img
-              src="./img/BBB_hustles_spare_change.png"
+              src="./img/BBB_hustles_squeegee.png"
               style={{
                 display: "block",
                 textAlign: "right",
@@ -243,7 +269,7 @@ const Home = () => {
             textAlign: "left"
           }}
         >
-          Spare Change
+          Hustle Meter
         </b>
 
         <HustleLevel />

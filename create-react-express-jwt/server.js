@@ -83,6 +83,8 @@ app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => 
 
 app.get('/api/users/:id/coins', isAuthenticated, (req, res) =>{
   if (req.user.id !== req.params.id) {
+    // if you're not logged in as the person you're 
+    // asking for info for, you're not allowed in
     return res.status(403).end()
   }
   else {
@@ -93,6 +95,27 @@ app.get('/api/users/:id/coins', isAuthenticated, (req, res) =>{
   // prevent user from accessing other users
   // 
   res.end()
+})
+
+
+app.put('/api/users/:id/coins', isAuthenticated, (req, res) => {
+  const newCoins = {
+    coins: req.body.coins
+  }
+  if (req.user.id !== req.params.id) {
+    // if you're not logged in as the person you're 
+    // asking for info for, you're not allowed in
+    return res.status(403).end()
+  }
+ 
+  db.User.update(newCoins)
+  .then(data => res.json(data))
+  .catch(err => res.status(400).json(err));
+  
+  // get this user (find by id and update
+  // let the client know that we're good
+  console.log(req.body.coins)
+  console.log(req.params)
 })
 
 // Error handling
