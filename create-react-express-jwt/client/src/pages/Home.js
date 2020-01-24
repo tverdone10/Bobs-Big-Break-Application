@@ -216,7 +216,7 @@ const Home = () => {
             alt=""
           />
         </button>
-        {clicked.isClicked === true ? (
+        {state.hustles.squeegee ? (
           <button
             onClick={SqueegeeProgress}
             className="spare-change-button"
