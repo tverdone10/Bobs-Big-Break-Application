@@ -22,12 +22,13 @@ const Inventory = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="container">
-      <Navbar />
       <Link to="/profile">
         <i
           className="far fa-window-close fa-4x"
-          style={{marginTop: '10px'}}
+          style={{marginTop: '170px'}}
         ></i>
       </Link>
       <h1 className="header">Inventory</h1>
@@ -122,6 +123,7 @@ const Inventory = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 
