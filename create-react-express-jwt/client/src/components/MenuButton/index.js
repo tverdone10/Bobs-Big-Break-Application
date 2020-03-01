@@ -21,12 +21,13 @@ class MenuButton extends Component {
       cursor: 'pointer',
       // disable touch highlighting on devices
       WebkitTapHighlightColor: "rgba(0,0,0,0)",
+      marginTop: '30px'
     }
     
     return (
       <svg 
         viewBox="0 0 96 96"
-        height="1em"
+        height="1.5em"
         onClick={this.handleClick.bind(this)}
         style={style}
       >
