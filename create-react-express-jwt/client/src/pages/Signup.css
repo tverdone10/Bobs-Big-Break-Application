@@ -11,7 +11,7 @@ p {
 
 .btn {
     display: block;
-    width: 70%;
+    width: 150px;
     padding: 10px;
     margin: 30px auto;
     color: white;
@@ -31,4 +31,24 @@ p {
 
 .paragraph {
     text-align: center;
+}
+
+.form-control {
+    width: 350px;
+}
+
+#username {
+    margin: 0 auto;
+}
+
+#email {
+    margin: 0 auto;
+}
+
+#pwd {
+    margin: 0 auto;
+}
+
+.container {
+    display: grid;
 }

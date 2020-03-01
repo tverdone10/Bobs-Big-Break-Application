@@ -21,53 +21,37 @@ import {useGlobalState} from '../useGlobalState';
 
 import {HUSTLERS, HUSTLES} from '../hustlerConfig';
 import {Link} from 'react-router-dom';
+import mainTheme from "../assets/music/profile_music.mp3"
+import HustleBar from '../components/HustleBar/HustleBar';
+
+
 
 const Home = () => {
   const [progressValue, setProgressValue] = useState(0);
   const {state, dispatch} = useGlobalState();
   const [clicked, setClicked] = useState({isClicked: false});
+  
+  
+//   let playing = false
 
-  function SpareChangeProgress() {
+// let themeSong = new Audio (mainTheme)
 
-    let seconds = 0;
-    const intervalId = setInterval(() => {
-      {
-        dispatch({type: USE_HUSTLE, hustle: 'spareChange'});
-      }
-      if (seconds < 9) {
-        seconds += 1;
-        setProgressValue(seconds * 10);
-      } else {
-        clearInterval(intervalId);
-        setProgressValue(0);
-      }
-    }, 1000);
 
-    return () => clearInterval(intervalId);
+// function bobTheme() {
 
-  }
+//   playing = true
+//   if (!themeSong.playing){
+//   themeSong.play()
+//   themeSong.volume = 0.5
+//   }
+// }
 
-  function SqueegeeProgress() {
+// useEffect(() => {
 
-    let seconds = 0;
-    const intervalId = setInterval(() => {
-      {
-        dispatch({type: USE_HUSTLE, hustle: 'squeegee'});
-      }
-      if (seconds < 9) {
-        seconds += 1;
-        setProgressValue(seconds * 10);
-      } else {
-        clearInterval(intervalId);
-        setProgressValue(0);
-      }
-    }, 1000);
+//   bobTheme()
 
-    return () => clearInterval(intervalId);
+// }, [])
 
-  }
-
-  let hide = false;
 
   function buySqueegee() {
     dispatch({type: BUY_HUSTLE, hustle: 'squeegee'});
@@ -77,7 +61,10 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <UnlockHustle cost={20000} />
+  
+    <HustleBar/>
+
+      <UnlockHustle cost={5000} />
       {/* <UnlockHustleTwo cost={5000} /> */}
 
       {/* this is the statement that unlocks the hustle */}
@@ -87,7 +74,7 @@ const Home = () => {
             <div className="container">
               <div className="container">
                 <h1 className="unlock-header">Next Hustle</h1>
-                <b className="cost">$5000</b>
+                <b className="cost">$40000</b>
                 <br />
                 <button
                   className="button is-large unlock"
@@ -105,46 +92,8 @@ const Home = () => {
         </section>
       ) : null}
 
-      {/* spare change container starts here */}
-      <div className="spare-change-container">
-        <button onClick={SpareChangeProgress} className="hustle-button spare-change-button">
-          <img
-            className="spare-change-img"
-            src="./img/BBB_hustles_spare_change.png"
-            alt=""
-          />
-        </button>
-        {clicked.isClicked === true ? (
-          <button onClick={SqueegeeProgress} className="hustle-button squeegee-button">
-            <img
-              className="squeegee-img"
-              src="./img/BBB_hustles_squeegee.png"
-              alt=""
-            />
-          </button>
-          
-        ) : null}
-      </div>
 
-      <div className="box">
-        <b className="multiplier">x1</b>
-        <b className="hustle-name">Spare Change</b>
-        <ProgressBar value={progressValue} />
-        <HustleLevel />
-        <LevelupButton />
-      </div>
-
-      {/* Bob icon that connects to inventory page */}
-      <div style={{textAlign: 'right'}}>
-        <Link to="/inventory">
-          <img
-            className="bob-icon"
-            src="./img/BBB_character_icon.png"
-            width="200px"
-            alt=""
-          />
-        </Link>
-      </div>
+      
 
       {/* Nav for going to Husters and Hustles page  */}
       <NavButtons />

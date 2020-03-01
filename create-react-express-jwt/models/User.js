@@ -25,7 +25,16 @@ const UserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+
+  coins: {
+    type: Number,
+    default: 0
+  },
+
+  hustles: [{}],
+  
+  hustlers: [{}]
 });
 
 // Execute before each user.save() call

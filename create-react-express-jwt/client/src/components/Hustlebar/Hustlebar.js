@@ -3,62 +3,103 @@ import './style.css';
 import HustleLevel from '../HustleLevel/HustleLevel';
 import LevelupButton from '../LevelupButton/LevelupButton';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import {
+  USE_HUSTLE,
+  USE_PASSIVE_HUSTLE,
+  INITIALIZE_PASSIVE_INTERVAL,
+  BUY_HUSTLE,
+  BUY_HUSTLER,
+} from '../../actions';
+
+import {useGlobalState} from '../../useGlobalState';
 
 
 
-function HustleBar() {
-  const [progressValue, setProgressValue] = useState(0)
-  const { state, dispatch } = useGlobalState();
-
-  function SpareChangeProgress() {
-
-      let seconds = 0
-      const intervalId = setInterval(() => {
-        {dispatch({ type: USE_HUSTLE, hustle: "coinJar" })}
-        if (seconds < 9) {
-          seconds += 1
-          setProgressValue(seconds * 10)
-        } else {
-          clearInterval(intervalId)
-          setProgressValue(0)
-        }
-      }, 1000)
+const HustleBar = () => {
   
-      return () => clearInterval(intervalId)
+  const [progressValue, setProgressValue] = useState(0);
+  const {state, dispatch} = useGlobalState();
+    const [clicked, setClicked] = useState({isClicked: false});
+
+    function SpareChangeProgress() {
+
+      let seconds = 0;
+      const intervalId = setInterval(() => {
+        {
+          dispatch({type: USE_HUSTLE, hustle: 'spareChange'});
+        }
+        if (seconds < 9) {
+          seconds += 1;
+          setProgressValue(seconds * 10);
+        } else {
+          clearInterval(intervalId);
+          setProgressValue(0);
+        }
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+  
+    }
+
+    function SqueegeeProgress() {
+
+      let seconds = 0;
+      const intervalId = setInterval(() => {
+        {
+          dispatch({type: USE_HUSTLE, hustle: 'squeegee'});
+        }
+        if (seconds < 9) {
+          seconds += 1;
+          setProgressValue(seconds * 10);
+        } else {
+          clearInterval(intervalId);
+          setProgressValue(0);
+        }
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+  
+    }
+  
+    let hide = false;
+  
+    function buySqueegee() {
+      dispatch({type: BUY_HUSTLE, hustle: 'squeegee'});
+      setClicked({isClicked: true});
+    }
+
+  return (
+          <div className="box hustle-container">
+      {/* spare change container starts here */}
+    <div className="spare-change-container">
+      <button onClick={SpareChangeProgress} className="hustle-button spare-change-button">
+        <img
+          className="spare-change-img"
+          src="./img/BBB_hustles_spare_change.png"
+          alt=""
+        />
+      </button>
+      {clicked.isClicked === true ? (
+        <button onClick={SqueegeeProgress} className="hustle-button squeegee-button">
+          <img
+            className="squeegee-img"
+            src="./img/BBB_hustles_squeegee.png"
+            alt=""
+          />
+        </button>
+        
+      ) : null}
+    </div>
+      <b className="multiplier">x1</b>
+      <b className="hustle-name">Spare Change</b>
+      <ProgressBar value={progressValue} />
+      <HustleLevel />
+      <LevelupButton />
+    </div>
+  )
 
 
   }
-    return (
-            <div
-        className="box"
-        style={{position: 'relative', paddingTop: '10px', margin: '0'}}
-      >
-        <b
-          style={{
-            display: 'block',
-            fontWeight: 'bold',
-            textAlign: 'right',
-            top: '0',
-          }}
-        >
-          x1
-        </b>
-        <b
-          style={{
-            display: 'block',
-            fontFamily: 'Shumi',
-            fontSize: '2em',
-            textAlign: 'left',
-          }}
-        >
-          Spare Change
-        </b>
 
-        <HustleLevel />
-        <ProgressBar value={progressValue} />
-        <LevelupButton />
-      </div>
-    )
-}
 
 export default HustleBar;

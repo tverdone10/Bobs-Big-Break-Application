@@ -1,20 +1,28 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './style.css';
+import soundfile from "../../assets/music/page_trans.mp3"
+
 
 const NavButtons = () => {
+    let audio = new Audio(soundfile)
+
+    const start = () => {
+        audio.play()
+    }
+
   return (
     <div className="navbuttons">
       <Link to="/hustles">
-        <button className="button is-large nav">Hustles</button>
+        <button onClick = {start} className="button is-large nav">Hustles</button>
       </Link>
       <Link to="/hustlers">
-        <button className="button is-large nav">Hustlers</button>
+        <button onClick = {start} className="button is-large nav">Hustlers</button>
       </Link>
       {/* <Link to="/shop"> */}
-        <button className="button is-large nav">Shop</button>
+        <button onClick = {start} className="button is-large nav">Shop</button>
       {/* </Link> */}
-      <button className="button is-large nav">Stats</button>
+      <button onClick = {start} className="button is-large nav">Stats</button>
     </div>
   );
 };
