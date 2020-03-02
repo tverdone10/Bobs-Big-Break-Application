@@ -5,8 +5,9 @@ import "./Hustles.css";
 
 const Hustles = ()=> {
     return(
+      <>
+      <Navbar/>
         <div className="container">
-          <Navbar style={{ position: 'absolute'}}/>
           <Link to="/profile">
       <i className="far fa-window-close fa-4x"></i>
           </Link>
@@ -47,6 +48,7 @@ const Hustles = ()=> {
         </div>
 
     </div>
+      </>
     )
 }
 

@@ -71,7 +71,8 @@ const HustleBar = () => {
   return (
           <div className="box hustle-container">
       {/* spare change container starts here */}
-    <div className="spare-change-container">
+    <div className="spare-change-container columns">
+      <div className="column">
       <button onClick={SpareChangeProgress} className="hustle-button spare-change-button">
         <img
           className="spare-change-img"
@@ -89,12 +90,17 @@ const HustleBar = () => {
         </button>
         
       ) : null}
-    </div>
-      <b className="multiplier">x1</b>
+        
+      </div>
+      <div className="column">
       <b className="hustle-name">Spare Change</b>
+      {/* <b className="multiplier">x1</b> */}
       <ProgressBar value={progressValue} />
       <HustleLevel />
       <LevelupButton />
+
+      </div>
+    </div>
     </div>
   )
 

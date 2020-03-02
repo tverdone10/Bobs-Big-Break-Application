@@ -11,7 +11,6 @@ import {
 } from '../actions';
 
 import {useGlobalState} from '../useGlobalState';
-
 import {HUSTLERS, HUSTLES} from '../hustlerConfig';
 
 const Hustlers = () => {
@@ -19,15 +18,14 @@ const Hustlers = () => {
   const [clicked, setClicked] = useState({isClicked: false}) 
 
   function buyJeff(){
-
-
     dispatch({type: BUY_HUSTLER, hustler: 'jeffPasos'})    
     setClicked({isClicked: true})  
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="container">
-      <Navbar style={{position: 'absolute'}} />
       <Link to="/profile">
         <i
           className="far fa-window-close fa-4x"
@@ -89,6 +87,7 @@ const Hustlers = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 
