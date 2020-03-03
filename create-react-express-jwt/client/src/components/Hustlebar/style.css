@@ -2,7 +2,7 @@
 
     border-radius: 5px;
 
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 .hustle-button {
@@ -13,15 +13,13 @@
 .spare-change-img {
     display: block;
     text-align: left;
-    width: 150px;
-    border-radius: 5px;
+    width: 100px;
 }
 
 .squeegee-img {
     display: block;
     text-align: right;
-    width: 150px;
-    border-radius: 5px;
+    width: 100px;
 }
 
 .box > div {
@@ -43,7 +41,6 @@
 }
 
 .hustle-container {
-    margin: 20px auto !important;
-    margin-top: 170px !important;
-    width: 700px !important;
+    margin: 20px !important;
+    /* width: 700px !important; */
 }

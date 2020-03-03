@@ -61,10 +61,23 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-  
+    
+    <div className="columns">
+      <div className="column is-half" style={{marginTop: '170px'}}>
     <HustleBar/>
-
       <UnlockHustle cost={5000} />
+      <UnlockHustle cost={40000} />
+      <UnlockHustle cost={150000} />
+      <UnlockHustle cost={500000} />
+      </div>
+      <div className="column is-half" style={{marginTop: '170px'}}>
+      <UnlockHustle cost={2500000} />
+      <UnlockHustle cost={8000000} />
+      <UnlockHustle cost={50000000} />
+      <UnlockHustle cost={73000000} />
+      </div>
+    </div>
+
       {/* <UnlockHustleTwo cost={5000} /> */}
 
       {/* this is the statement that unlocks the hustle */}
